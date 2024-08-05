@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { getArticles } from "../utils/api";
 import LoadingDisplay from "./minor/LoadingDisplay";
 import ErrorDisplay from "./minor/ErrorDisplay";
+import { Link } from "react-router-dom";
 
 // ArticleList Component
 // Renders all articles found at /api/articles, with a limit of 10 per page.
@@ -38,7 +39,18 @@ const ArticleList = () => {
     <div className="grid gap-5" aria-label="Articles">
       {articles.map((article) => (
         <div key={article.article_id} className="border p-4 rounded shadow">
-          <h2 className="text-xl font-bold">{article.title}</h2>
+          <article>
+            {/* Link to ArticleDetails on the article title */}
+            <h4 className="text-xl font-bold mb-2">
+              <Link
+                to={`/articles/${article.article_id}`}
+                className="hover:underline"
+              >
+                {article.title}
+              </Link>
+            </h4>
+          </article>
+          {/* Render the rest of the article details */}
           <div className="flex justify-between text-sm">
             <span className="font-bold">{article.author}</span>
             <span>Topic: {article.topic}</span>

@@ -21,3 +21,10 @@ export const getArticles = (page = 1, limit = 10) => {
     .then(({ data }) => data)
     .catch(handleApiError);
 };
+
+export const getArticleById = (articleId) => {
+  return api
+    .get(`/articles/${articleId}`)
+    .then(({ data }) => data.article)
+    .catch(handleApiError);
+};

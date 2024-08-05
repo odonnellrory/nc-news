@@ -1,9 +1,9 @@
-const Loading = () => {
+const LoadingDisplay = () => {
   return (
-    <div className="text-center p-4">
+    <div className="text-center text-xl p-5">
       <p>Loading...</p>
     </div>
   );
 };
 
-export default Loading;
+export default LoadingDisplay;
