@@ -43,9 +43,9 @@
 		{
 			"id": "pointer:pointer",
 			"typeName": "pointer",
-			"x": 1445.46576262258,
-			"y": 42.82531248838177,
-			"lastActivityTimestamp": 1722861655412,
+			"x": 2313.859066324514,
+			"y": 201.94426373095996,
+			"lastActivityTimestamp": 1722861698374,
 			"meta": {}
 		},
 		{
@@ -67,7 +67,7 @@
 			"brush": null,
 			"scribbles": [],
 			"cursor": {
-				"type": "move",
+				"type": "default",
 				"rotation": 0
 			},
 			"isFocusMode": false,
@@ -106,11 +106,10 @@
 			"typeName": "instance"
 		},
 		{
-			"editingShapeId": null,
+			"editingShapeId": "shape:ZTrAG3rZl_AG1bcjMpGh5",
 			"croppingShapeId": null,
 			"selectedShapeIds": [
-				"shape:xk4BQ5KRV1OksF5dWwTkG",
-				"shape:Qv7azNk1b4ZCAZOqFwVOL"
+				"shape:ZTrAG3rZl_AG1bcjMpGh5"
 			],
 			"hoveredShapeId": null,
 			"erasingShapeIds": [],
@@ -122,8 +121,8 @@
 			"typeName": "instance_page_state"
 		},
 		{
-			"x": -42.13721179670708,
-			"y": 461.6624197072485,
+			"x": -706.3595340928832,
+			"y": 381.4251880344316,
 			"z": 0.7036841083428726,
 			"meta": {},
 			"id": "camera:page:page",
@@ -2362,8 +2361,8 @@
 			"props": {
 				"color": "yellow",
 				"size": "s",
-				"w": 338.0182189941406,
-				"text": "(state: article, comments, isLoading)",
+				"w": 234.38540649414062,
+				"text": "(state: article, isLoading)",
 				"font": "draw",
 				"textAlign": "start",
 				"autoSize": true,

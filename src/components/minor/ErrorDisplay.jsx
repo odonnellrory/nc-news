@@ -1,4 +1,4 @@
-const Error = ({ error }) => {
+const ErrorDisplay = ({ error }) => {
   let errorMessage = "An error occurred";
 
   if (typeof error === "string") {
@@ -11,7 +11,7 @@ const Error = ({ error }) => {
 
   return (
     <div className="p-4">
-      <p className="text-red-600">Error: {errorMessage}</p>
+      <p className="text-red-600">{errorMessage}</p>
       {error && error.status && (
         <p className="text-sm">Status: {error.status}</p>
       )}
@@ -19,4 +19,4 @@ const Error = ({ error }) => {
   );
 };
 
-export default Error;
+export default ErrorDisplay;
