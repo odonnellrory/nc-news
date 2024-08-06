@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getArticleById } from "../utils/api";
-import LoadingDisplay from "./minor/LoadingDisplay";
-import ErrorDisplay from "./minor/ErrorDisplay";
-import CommentSection from "./comments/CommentSection";
+import { getArticleById } from "../../utils/api";
+import LoadingDisplay from "../minor/LoadingDisplay";
+import ErrorDisplay from "../minor/ErrorDisplay";
+import CommentSection from "../comments/CommentSection";
+import ArticleVote from "./ArticleVote";
 
 // ArticleDetail Component
 // This component renders all of the information for a specific article_id from the API
@@ -49,10 +50,14 @@ const ArticleDetail = () => {
           </p>
           <p>Topic: {article.topic}</p>
           <p>Posted on: {new Date(article.created_at).toLocaleDateString()}</p>
-          <p>Votes: {article.votes}</p>
+
+          <ArticleVote
+            article_id={article_id}
+            votes={article.votes}
+            setArticle={setArticle}
+          />
         </div>
 
-        {/* Button for displaying an articles associated comments */}
         <p className="mb-4">{article.body}</p>
         <button
           onClick={() => setShowComments(!showComments)}
