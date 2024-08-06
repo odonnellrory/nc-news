@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { getArticles } from "../utils/api";
-import LoadingDisplay from "./minor/LoadingDisplay";
-import ErrorDisplay from "./minor/ErrorDisplay";
+import { getArticles } from "../../utils/api";
+import LoadingDisplay from "../minor/LoadingDisplay";
+import ErrorDisplay from "../minor/ErrorDisplay";
 import { Link } from "react-router-dom";
 
 // ArticleList Component
@@ -40,7 +40,6 @@ const ArticleList = () => {
       {articles.map((article) => (
         <div key={article.article_id} className="border p-4 rounded shadow">
           <article>
-            {/* Link to ArticleDetails on the article title */}
             <h4 className="text-xl font-bold mb-2">
               <Link
                 to={`/articles/${article.article_id}`}
@@ -50,7 +49,7 @@ const ArticleList = () => {
               </Link>
             </h4>
           </article>
-          {/* Render the rest of the article details */}
+
           <div className="flex justify-between text-sm">
             <span className="font-bold">{article.author}</span>
             <span>Topic: {article.topic}</span>
@@ -62,7 +61,6 @@ const ArticleList = () => {
         </div>
       ))}
 
-      {/* This function creates a button for each page in the article list and numbers them */}
       <div className="mt-4 flex justify-center" aria-label="Pagination">
         {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
           <button

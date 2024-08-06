@@ -35,3 +35,10 @@ export const getCommentsByArticleId = (articleId) => {
     .then(({ data }) => data.comments)
     .catch(handleApiError);
 };
+
+export const patchArticleVotes = (articleId, increment) => {
+  return api
+    .patch(`/articles/${articleId}`, { inc_votes: increment })
+    .then(({ data }) => data.article)
+    .catch(handleApiError);
+};

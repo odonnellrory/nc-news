@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import ArticleList from "./ArticleList";
+import ArticleList from "./articles/ArticleList";
 
 const Home = () => {
   return (
