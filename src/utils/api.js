@@ -28,3 +28,10 @@ export const getArticleById = (articleId) => {
     .then(({ data }) => data.article)
     .catch(handleApiError);
 };
+
+export const getCommentsByArticleId = (articleId) => {
+  return api
+    .get(`/articles/${articleId}/comments`)
+    .then(({ data }) => data.comments)
+    .catch(handleApiError);
+};

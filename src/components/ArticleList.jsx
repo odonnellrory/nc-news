@@ -33,7 +33,7 @@ const ArticleList = () => {
   }, [currentPage]);
 
   if (isLoading) return <LoadingDisplay />;
-  if (error) return <ErrorDisplay />;
+  if (error) return <ErrorDisplay error={error} />;
 
   return (
     <div className="grid gap-5" aria-label="Articles">
