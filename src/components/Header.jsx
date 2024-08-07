@@ -1,11 +1,36 @@
+// src/components/Header.jsx
 import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ currentUser, handleSignOut }) => {
   return (
-    <header className="p-4 mb-4 border-b">
-      <Link to={`/`} className="hover:underline text-2xl mb-2">
+    <header className="p-4 mb-4 border-b flex justify-between items-center">
+      <Link to={`/`} className="hover:underline text-2xl">
         NC News
-      </Link>{" "}
+      </Link>
+      {currentUser ? (
+        currentUser === "guest" ? (
+          <button
+            onClick={handleSignOut}
+            className="ml-4 text-gray-600 hover:underline"
+          >
+            You are currently signed in as a guest
+          </button>
+        ) : (
+          <div>
+            <span>Welcome, {currentUser}!</span>
+            <button
+              onClick={handleSignOut}
+              className="ml-4 text-blue-500 hover:underline"
+            >
+              Sign Out
+            </button>
+          </div>
+        )
+      ) : (
+        <Link to="/signin" className="text-blue-500 hover:underline">
+          Sign In
+        </Link>
+      )}
     </header>
   );
 };

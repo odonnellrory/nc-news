@@ -49,3 +49,14 @@ export const postComment = (articleId, username, body) => {
     .then(({ data }) => data.comment)
     .catch(handleApiError);
 };
+
+export const deleteComment = (comment_id) => {
+  return api.delete(`/comments/${comment_id}`).catch(handleApiError);
+};
+
+export const getUsers = () => {
+  return api
+    .get("/users")
+    .then(({ data }) => data.users)
+    .catch(handleApiError);
+};

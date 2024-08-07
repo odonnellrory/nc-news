@@ -3,7 +3,7 @@ import { postComment } from "../../utils/api";
 import SuccessDisplay from "../minor/SuccessDisplay";
 import ErrorDisplay from "../minor/ErrorDisplay";
 
-const CommentForm = ({ article_id, addComment }) => {
+const CommentForm = ({ article_id, addComment, currentUser }) => {
   const [body, setBody] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
@@ -20,7 +20,7 @@ const CommentForm = ({ article_id, addComment }) => {
     setSuccess(false);
 
     try {
-      const newComment = await postComment(article_id, "jessjelly", body);
+      const newComment = await postComment(article_id, currentUser, body);
       addComment(newComment);
       setBody("");
       setSuccess(true);
