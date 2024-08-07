@@ -42,3 +42,10 @@ export const patchArticleVotes = (articleId, increment) => {
     .then(({ data }) => data.article)
     .catch(handleApiError);
 };
+
+export const postComment = (articleId, username, body) => {
+  return api
+    .post(`/articles/${articleId}/comments`, { username, body })
+    .then(({ data }) => data.comment)
+    .catch(handleApiError);
+};
