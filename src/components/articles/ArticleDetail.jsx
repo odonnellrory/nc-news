@@ -9,7 +9,7 @@ import ArticleVote from "./ArticleVote";
 // ArticleDetail Component
 // This component renders all of the information for a specific article_id from the API
 
-const ArticleDetail = () => {
+const ArticleDetail = ({ currentUser }) => {
   const [article, setArticle] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -66,7 +66,9 @@ const ArticleDetail = () => {
           Comments: {article.comment_count}
         </button>
       </article>
-      {showComments && <CommentSection article_id={article_id} />}
+      {showComments && (
+        <CommentSection article_id={article_id} currentUser={currentUser} />
+      )}
     </div>
   );
 };
