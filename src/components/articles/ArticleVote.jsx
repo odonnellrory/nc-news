@@ -2,24 +2,21 @@ import { useState } from "react";
 import { patchArticleVotes } from "../../utils/api";
 import ErrorDisplay from "../minor/ErrorDisplay";
 
-const ArticleVote = ({ article_id, votes, setArticle }) => {
-  const [voteChange, setVoteChange] = useState(0);
+// ArticleVote Component
+// This component handles the voting functionality on articles.
+
+const ArticleVote = ({ article_id, votes: initialVotes }) => {
+  const [votes, setVotes] = useState(initialVotes);
   const [error, setError] = useState(null);
 
   const handleVote = async (increment) => {
-    setVoteChange((currentChange) => currentChange + increment);
+    setVotes((currentVotes) => currentVotes + increment);
     setError(null);
 
-    try {
-      const updatedArticle = await patchArticleVotes(article_id, increment);
-      setArticle((article) => ({
-        ...article,
-        votes: updatedArticle.votes,
-      }));
-    } catch (err) {
+    patchArticleVotes(article_id, increment).catch((err) => {
       setVoteChange((currentChange) => currentChange - increment);
-      setError("There was an error voting on this article.  Please try again.");
-    }
+      setError("There was an error voting on this article. Please try again.");
+    });
   };
 
   if (error) return <ErrorDisplay error={error} />;
@@ -30,14 +27,14 @@ const ArticleVote = ({ article_id, votes, setArticle }) => {
       <button
         onClick={() => handleVote(1)}
         className="ml-2 px-2 py-1 bg-green-500 text-white rounded"
-        disabled={voteChange === 1}
+        disabled={votes === initialVotes + 1}
       >
         👍
       </button>
       <button
         onClick={() => handleVote(-1)}
         className="ml-2 px-2 py-1 bg-red-500 text-white rounded"
-        disabled={voteChange === -1}
+        disabled={votes === initialVotes - 1}
       >
         👎
       </button>
