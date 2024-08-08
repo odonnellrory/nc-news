@@ -4,6 +4,9 @@ import { getTopics } from "../../utils/api";
 import LoadingDisplay from "../minor/LoadingDisplay";
 import ErrorDisplay from "../minor/ErrorDisplay";
 
+// TopicList Component
+// This lists all the available topics that articles can be filtered by.
+
 const TopicList = () => {
   const [topics, setTopics] = useState([]);
   const [isLoading, setIsLoading] = useState(true);

@@ -15,9 +15,14 @@ const handleApiError = (error) => {
   }
 };
 
-export const getArticles = (page = 1, limit = 10) => {
+export const getArticles = (
+  page = 1,
+  sort_by = "created_at",
+  order = "desc",
+  limit = 10
+) => {
   return api
-    .get("/articles", { params: { p: page, limit } })
+    .get("/articles", { params: { p: page, sort_by, order, limit } })
     .then(({ data }) => data)
     .catch(handleApiError);
 };
@@ -68,9 +73,15 @@ export const getTopics = () => {
     .catch(handleApiError);
 };
 
-export const getArticlesByTopic = (topic, page = 1, limit = 10) => {
+export const getArticlesByTopic = (
+  topic,
+  page = 1,
+  sort_by = "created_at",
+  order = "desc",
+  limit = 10
+) => {
   return api
-    .get("/articles", { params: { topic, p: page, limit } })
+    .get("/articles", { params: { topic, p: page, sort_by, order, limit } })
     .then(({ data }) => data)
     .catch(handleApiError);
 };
