@@ -2,16 +2,20 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getUsers } from "../../utils/api";
 import SignInDisclaimer from "./SignInDisclaimer";
+import LoadingDisplay from "../minor/LoadingDisplay";
+import ErrorDisplay from "../minor/ErrorDisplay";
 
 const SignIn = ({ setCurrentUser }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    setIsLoading(true);
 
     try {
       const users = await getUsers();
@@ -25,6 +29,8 @@ const SignIn = ({ setCurrentUser }) => {
       }
     } catch (err) {
       setError("An error occurred.  Please try again.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -37,6 +43,8 @@ const SignIn = ({ setCurrentUser }) => {
     setUsername(clickedUsername);
     setPassword("password");
   };
+
+  if (isLoading) return <LoadingDisplay />;
 
   return (
     <div className="container mx-auto mt-10 px-4 relative">
@@ -69,7 +77,7 @@ const SignIn = ({ setCurrentUser }) => {
               required
             />
           </div>
-          {error && <p className="text-red-500">{error}</p>}
+          {error && <ErrorDisplay error={error} />}
           <button
             type="submit"
             className="w-full p-2 bg-blue-500 text-white rounded"

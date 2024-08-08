@@ -54,7 +54,7 @@ const ArticleDetail = ({ currentUser }) => {
           <ArticleVote
             article_id={article_id}
             votes={article.votes}
-            setArticle={setArticle}
+            currentUser={currentUser}
           />
         </div>
 

@@ -1,17 +1,23 @@
 import { useState } from "react";
 import { patchArticleVotes } from "../../utils/api";
 import ErrorDisplay from "../minor/ErrorDisplay";
+import { Link } from "react-router-dom";
 
 // ArticleVote Component
 // This component handles the voting functionality on articles.
 
-const ArticleVote = ({ article_id, votes: initialVotes }) => {
+const ArticleVote = ({ article_id, votes: initialVotes, currentUser }) => {
   const [votes, setVotes] = useState(initialVotes);
   const [error, setError] = useState(null);
 
   const handleVote = async (increment) => {
     setVotes((currentVotes) => currentVotes + increment);
     setError(null);
+
+    if (!currentUser || currentUser === "guest") {
+      setError("You need to be signed in to vote on an article");
+      return;
+    }
 
     patchArticleVotes(article_id, increment).catch((err) => {
       setVoteChange((currentChange) => currentChange - increment);
