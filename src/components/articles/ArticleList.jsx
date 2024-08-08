@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 // ArticleList Component
 // Renders all articles found at /api/articles, with a limit of 10 per page.
 
-const ArticleList = () => {
+const ArticleList = ({ articles: propArticles }) => {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -15,21 +15,26 @@ const ArticleList = () => {
   const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
-    const fetchArticles = async () => {
-      try {
-        const data = await getArticles(currentPage);
-        setArticles(data.articles);
-        setTotalPages(Math.ceil(data.total_count / 10));
-        setIsLoading(false);
-      } catch (err) {
-        setError(
-          "There was an error fetching the articles.  Please try again."
-        );
-        setIsLoading(false);
-      }
-    };
+    if (propArticles) {
+      setArticles(propArticles);
+      setIsLoading(false);
+    } else {
+      const fetchArticles = async () => {
+        try {
+          const data = await getArticles(currentPage);
+          setArticles(data.articles);
+          setTotalPages(Math.ceil(data.total_count / 10));
+          setIsLoading(false);
+        } catch (err) {
+          setError(
+            "There was an error fetching the articles.  Please try again."
+          );
+          setIsLoading(false);
+        }
+      };
 
-    fetchArticles();
+      fetchArticles();
+    }
   }, [currentPage]);
 
   if (isLoading) return <LoadingDisplay />;

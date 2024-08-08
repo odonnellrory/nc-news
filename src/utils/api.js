@@ -60,3 +60,17 @@ export const getUsers = () => {
     .then(({ data }) => data.users)
     .catch(handleApiError);
 };
+
+export const getTopics = () => {
+  return api
+    .get("/topics")
+    .then(({ data }) => data.topics)
+    .catch(handleApiError);
+};
+
+export const getArticlesByTopic = (topic, page = 1, limit = 10) => {
+  return api
+    .get("/articles", { params: { topic, p: page, limit } })
+    .then(({ data }) => data)
+    .catch(handleApiError);
+};

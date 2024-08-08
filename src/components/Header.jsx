@@ -7,6 +7,14 @@ const Header = ({ currentUser, handleSignOut }) => {
       <Link to={`/`} className="hover:underline text-2xl">
         NC News
       </Link>
+      <nav>
+        <Link to="/articles" className="mr-4 hover:underline">
+          Articles
+        </Link>
+        <Link to="/topics" className="mr-4 hover:underline">
+          Topics
+        </Link>
+      </nav>
       {currentUser ? (
         currentUser === "guest" ? (
           <button
