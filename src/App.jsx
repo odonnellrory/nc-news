@@ -10,6 +10,8 @@ import ArticleList from "./components/articles/ArticleList";
 import ArticleDetail from "./components/articles/ArticleDetail";
 import SignIn from "./components/users/SignIn";
 import { useState, useEffect } from "react";
+import TopicList from "./components/topics/TopicList";
+import TopicPage from "./components/topics/TopicPage";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(() => {
@@ -55,6 +57,14 @@ function App() {
                 <Navigate to="/signin" />
               )
             }
+          />
+          <Route
+            path="/topics"
+            element={currentUser ? <TopicList /> : <Navigate to="/signin" />}
+          />
+          <Route
+            path="/topics/:topic"
+            element={currentUser ? <TopicPage /> : <Navigate to="/signin" />}
           />
         </Routes>
       </div>
