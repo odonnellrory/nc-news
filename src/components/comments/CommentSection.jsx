@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getCommentsByArticleId } from "../../utils/api";
+import { getCommentsByArticleId, getUsers } from "../../utils/api";
 import CommentList from "./CommentList";
 import CommentForm from "./CommentForm";
 import LoadingDisplay from "../minor/LoadingDisplay";
@@ -11,14 +11,19 @@ import { Link } from "react-router-dom";
 
 const CommentSection = ({ article_id, currentUser }) => {
   const [comments, setComments] = useState([]);
+  const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const data = await getCommentsByArticleId(article_id);
-        setComments(data);
+        const [commentsData, usersData] = await Promise.all([
+          getCommentsByArticleId(article_id),
+          getUsers(),
+        ]);
+        setComments(commentsData);
+        setUsers(usersData);
         setIsLoading(false);
       } catch (err) {
         setError(
@@ -32,6 +37,12 @@ const CommentSection = ({ article_id, currentUser }) => {
 
   const addComment = (newComment) => {
     setComments([newComment, ...comments]);
+  };
+
+  const handleCommentDeleted = (deletedCommentId) => {
+    setComments((prevComments) =>
+      prevComments.filter((comment) => comment.comment_id !== deletedCommentId)
+    );
   };
 
   if (isLoading) return <LoadingDisplay />;
@@ -54,7 +65,12 @@ const CommentSection = ({ article_id, currentUser }) => {
           to post a comment.
         </p>
       )}{" "}
-      <CommentList comments={comments} currentUser={currentUser} />
+      <CommentList
+        comments={comments}
+        users={users}
+        currentUser={currentUser}
+        onCommentDeleted={handleCommentDeleted}
+      />
     </section>
   );
 };

@@ -26,6 +26,10 @@ const SignInDisclaimer = ({ onUsernameClick }) => {
         ))}
       </ul>
       <p>The password for all accounts is: "password"</p>
+      <p>
+        <span className="font-bold">Note:</span> It may take a minute for the
+        API to load.
+      </p>
     </div>
   );
 };
