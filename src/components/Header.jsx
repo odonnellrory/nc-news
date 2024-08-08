@@ -8,9 +8,6 @@ const Header = ({ currentUser, handleSignOut }) => {
         NC News
       </Link>
       <nav>
-        <Link to="/articles" className="mr-4 hover:underline">
-          Articles
-        </Link>
         <Link to="/topics" className="mr-4 hover:underline">
           Topics
         </Link>
