@@ -12,6 +12,7 @@ import SignIn from "./components/users/SignIn";
 import { useState, useEffect } from "react";
 import TopicList from "./components/topics/TopicList";
 import TopicPage from "./components/topics/TopicPage";
+import ErrorDisplay from "./components/minor/ErrorDisplay";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(() => {
@@ -65,6 +66,10 @@ function App() {
           <Route
             path="/topics/:topic"
             element={currentUser ? <TopicPage /> : <Navigate to="/signin" />}
+          />
+          <Route
+            path="*"
+            element={<ErrorDisplay error={"404: Path Not Found."} />}
           />
         </Routes>
       </div>

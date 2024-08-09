@@ -23,7 +23,10 @@ const ArticleDetail = ({ currentUser }) => {
         setArticle(data);
         setIsLoading(false);
       } catch (err) {
-        setError("There was an error fetching the article. Please try again.");
+        setError({
+          status: err.status,
+          message: "There was an error fetching the article. Please try again.",
+        });
         setIsLoading(false);
       }
     };

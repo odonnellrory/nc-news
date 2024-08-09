@@ -29,9 +29,11 @@ const TopicPage = () => {
         setIsLoading(false);
       })
       .catch((err) => {
-        setError(
-          "There was an error fetching the articles for this topic. Please try again."
-        );
+        setError({
+          status: err.status,
+          message:
+            "There was an error fetching the articles for this topic. Please try again.",
+        });
         setIsLoading(false);
       });
   }, [topic, currentPage, sortBy, order]);
