@@ -11,9 +11,9 @@ const ErrorDisplay = ({ error }) => {
 
   return (
     <div className="p-4">
-      <p className="text-red-600">{errorMessage}</p>
+      <p className="text-xl text-red-600">{errorMessage}</p>
       {error && error.status && (
-        <p className="text-sm">Status: {error.status}</p>
+        <p className="text-red-600">Status: {error.status}</p>
       )}
     </div>
   );

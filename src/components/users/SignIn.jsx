@@ -28,7 +28,10 @@ const SignIn = ({ setCurrentUser }) => {
         setError("Invalid username or password");
       }
     } catch (err) {
-      setError("An error occurred.  Please try again.");
+      setError({
+        status: err.status,
+        message: "An error occurred. Please try again.",
+      });
     } finally {
       setIsLoading(false);
     }

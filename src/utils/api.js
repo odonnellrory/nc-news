@@ -7,7 +7,10 @@ const api = axios.create({
 const handleApiError = (error) => {
   console.error("API Error:", error);
   if (error.response) {
-    throw error.response.data;
+    throw {
+      status: error.response.status,
+      data: error.response.data,
+    };
   } else if (error.request) {
     throw new Error("No response received from server");
   } else {
@@ -19,10 +22,11 @@ export const getArticles = (
   page = 1,
   sort_by = "created_at",
   order = "desc",
+  topic,
   limit = 10
 ) => {
   return api
-    .get("/articles", { params: { p: page, sort_by, order, limit } })
+    .get("/articles", { params: { p: page, sort_by, order, topic, limit } })
     .then(({ data }) => data)
     .catch(handleApiError);
 };

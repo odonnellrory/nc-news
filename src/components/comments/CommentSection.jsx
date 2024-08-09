@@ -26,9 +26,11 @@ const CommentSection = ({ article_id, currentUser }) => {
         setUsers(usersData);
         setIsLoading(false);
       } catch (err) {
-        setError(
-          "There was an error fetching the comments.  Please try again."
-        );
+        setError({
+          status: err.status,
+          message:
+            "There was an error fetching the comments. Please try again.",
+        });
         setIsLoading(false);
       }
     };

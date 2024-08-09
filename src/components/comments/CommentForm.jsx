@@ -26,7 +26,10 @@ const CommentForm = ({ article_id, addComment, currentUser }) => {
       setSuccess(true);
       setTimeout(() => setSuccess(false), 3000);
     } catch (err) {
-      setError("There was an error posting the comment.  Please try again.");
+      setError({
+        status: err.status,
+        message: "There was an error posting the comment. Please try again.",
+      });
     } finally {
       setIsSubmitting(false);
     }

@@ -19,7 +19,11 @@ const TopicList = () => {
         setIsLoading(false);
       })
       .catch((err) => {
-        setError("There was an error fetching topics.  Please try again.");
+        setError({
+          status: err.status,
+          message:
+            "There was an error fetching the the list of topics. Please try again.",
+        });
         setIsLoading(false);
       });
   }, []);
